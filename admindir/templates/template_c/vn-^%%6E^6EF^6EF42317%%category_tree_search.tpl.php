@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2025-11-21 09:46:19
+<?php /* Smarty version 2.6.30, created on 2026-01-12 14:33:06
          compiled from articlelist/category_tree_search.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'is_array', 'articlelist/category_tree_search.tpl', 1, false),array('modifier', 'default', 'articlelist/category_tree_search.tpl', 3, false),array('modifier', 'count', 'articlelist/category_tree_search.tpl', 6, false),)), $this); ?>
@@ -28,7 +28,7 @@ $this->_sections['i']['index_next'] = $this->_sections['i']['index'] + $this->_s
 $this->_sections['i']['first']      = ($this->_sections['i']['iteration'] == 1);
 $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $this->_sections['i']['total']);
 ?>--&nbsp;<?php endfor; endif; ?>
-    <?php echo ((is_array($_tmp=@$this->_tpl_vars['node']['details']['name'])) ? $this->_run_mod_handler('default', true, $_tmp, @$this->_tpl_vars['node']['name']) : smarty_modifier_default($_tmp, @$this->_tpl_vars['node']['name'])); ?>
+    <?php echo ((is_array($_tmp=@$this->_tpl_vars['node']['detailsList'][$this->_tpl_vars['currentLang']]['name'])) ? $this->_run_mod_handler('default', true, $_tmp, @$this->_tpl_vars['node']['name']) : smarty_modifier_default($_tmp, @$this->_tpl_vars['node']['name'])); ?>
 
 </option>
 

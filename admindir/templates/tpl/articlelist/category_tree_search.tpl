@@ -1,6 +1,6 @@
 <option value="{$node.id}" {if $selected|@is_array && in_array($node.id, $selected)}selected{/if}>
     {section name=i loop=$node.level}--&nbsp;{/section}
-    {$node.details.name|default:$node.name}
+    {$node.detailsList[$currentLang].name|default:$node.name}
 </option>
 
 {if $node.children|@count > 0}
