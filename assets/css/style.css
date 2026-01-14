@@ -881,6 +881,11 @@ img.alignleft {
   z-index: 4000;
 }
 
+.bg-nav-menu {
+  background: #eee;
+  margin-bottom: 1rem;
+}
+
 .nav-menu {
   position: relative;
   z-index: 2;
@@ -892,7 +897,6 @@ img.alignleft {
   .nav-menu ul {
     display: flex;
     overflow-x: scroll;
-    margin-bottom: 1rem;
   }
 }
 @media (max-width: 767px) {
@@ -913,6 +917,8 @@ img.alignleft {
   align-items: center;
   position: relative;
   padding: 0.5rem 1rem 0.5rem;
+  background: #FFF;
+  border-radius: 0.5rem;
 }
 .nav-menu ul .nav-item .nav-link:hover {
   background: #b31d29;
@@ -1349,7 +1355,11 @@ input[type=month].form-control {
   display: flex;
   gap: 0.5rem;
   padding: 1rem 0;
-  flex-wrap: wrap;
+}
+@media (max-width: 767px) {
+  .breadcumb {
+    overflow-x: scroll;
+  }
 }
 @media (min-width: 768px) {
   .breadcumb {
@@ -1358,6 +1368,12 @@ input[type=month].form-control {
 }
 .breadcumb li {
   list-style: none;
+  font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  .breadcumb li {
+    flex-shrink: 0;
+  }
 }
 @media (min-width: 768px) {
   .breadcumb li {
@@ -1366,7 +1382,7 @@ input[type=month].form-control {
 }
 .breadcumb li a {
   margin-right: 0.1rem;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 @media (min-width: 768px) {
   .breadcumb li a {

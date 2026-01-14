@@ -834,7 +834,12 @@
 }
 .product-detail-sidebar table {
   border: 1px solid #ccc;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+}
+@media (min-width: 768px) {
+  .product-detail-sidebar table {
+    font-size: 1.5rem;
+  }
 }
 .product-detail-sidebar table tr th {
   padding: 1rem;

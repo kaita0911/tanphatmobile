@@ -33,7 +33,10 @@
     display: flex;
     gap: 0.5rem;
     padding: 1rem 0;
-    flex-wrap: wrap;
+
+    @include mq("md") {
+        overflow-x: scroll;
+    }
 
     @include mq("md", min) {
         gap: 1rem;
@@ -41,6 +44,11 @@
 
     li {
         list-style: none;
+        font-size: 1.4rem;
+
+        @include mq("md") {
+            flex-shrink: 0;
+        }
 
         @include mq("md", min) {
             font-size: 1.6rem;
@@ -49,7 +57,7 @@
         a {
 
             margin-right: 0.1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
 
             @include mq("md", min) {
                 font-size: 1.6rem;

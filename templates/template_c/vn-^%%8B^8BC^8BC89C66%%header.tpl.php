@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-12 10:07:09
+<?php /* Smarty version 2.6.30, created on 2026-01-13 14:32:52
          compiled from ./header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', './header.tpl', 23, false),array('modifier', 'count', './header.tpl', 28, false),)), $this); ?>
@@ -132,13 +132,15 @@ unset($_smarty_tpl_vars);
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="nav-menu">
-      <?php $_smarty_tpl_vars = $this->_tpl_vars;
+  <div class="bg-nav-menu">
+    <div class="container">
+      <div class="nav-menu">
+        <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'categories_tree_2.tpl', 'smarty_include_vars' => array('categories' => $this->_tpl_vars['categories_tree'])));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+      </div>
     </div>
   </div>
 </header>

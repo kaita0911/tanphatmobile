@@ -707,6 +707,11 @@
 //         }
 //     }
 // }
+.bg-nav-menu {
+    background: #eee;
+    margin-bottom: 1rem;
+}
+
 .nav-menu {
     position: relative;
     z-index: 2;
@@ -717,7 +722,7 @@
         @include mq('md') {
             display: flex;
             overflow-x: scroll;
-            margin-bottom: 1rem;
+
         }
 
         .nav-item {
@@ -737,6 +742,8 @@
                 align-items: center;
                 position: relative;
                 padding: 0.5rem 1rem 0.5rem;
+                background: #FFF;
+                border-radius: 0.5rem;
 
                 &:hover {
                     background: $primary;

@@ -96,9 +96,11 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="nav-menu">
-      {include file='categories_tree_2.tpl' categories=$categories_tree}
+  <div class="bg-nav-menu">
+    <div class="container">
+      <div class="nav-menu">
+        {include file='categories_tree_2.tpl' categories=$categories_tree}
+      </div>
     </div>
   </div>
 </header>

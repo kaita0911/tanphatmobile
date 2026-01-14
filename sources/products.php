@@ -272,7 +272,7 @@ switch ($act) {
                 $orderBy = 'a.id ASC';
                 break;
             default:
-                $orderBy = 'a.id DESC';
+                $orderBy = 'a.num DESC';
                 break;
         }
 
