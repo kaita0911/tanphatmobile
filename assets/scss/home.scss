@@ -56,7 +56,7 @@
 
    .img {
       width: 100%;
-      height: 17rem;
+      height: 20rem;
       object-fit: cover;
 
       @include mq('md', min) {
@@ -131,6 +131,30 @@
          padding-left: 1rem;
       }
    }
+
+   .cate-sub {
+      display: flex;
+      gap: 2rem;
+
+      ul {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         gap: 1rem;
+
+         li {
+            a {
+               text-transform: capitalize;
+
+               &:hover {
+                  color: $primary;
+               }
+            }
+         }
+      }
+
+   }
+
 
    .view-all {
       background: #eee;

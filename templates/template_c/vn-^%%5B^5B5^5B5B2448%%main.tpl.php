@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-12 09:36:48
+<?php /* Smarty version 2.6.30, created on 2026-01-16 15:13:51
          compiled from main/main.tpl */ ?>
 <main>
    <div class="container">
@@ -81,11 +81,26 @@
 
                </a>
             </h2>
-            <a class="view-all" href="/<?php echo $this->_tpl_vars['cat']['unique_key']; ?>
+            <div class="cate-sub">
+               <?php if ($this->_tpl_vars['cat']['sub_categories']): ?>
+               <ul>
+                  <?php $_from = $this->_tpl_vars['cat']['sub_categories']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['sub']):
+?>
+                  <li>
+                     <a href="/<?php echo $this->_tpl_vars['sub']['unique_key']; ?>
+">
+                        <?php echo $this->_tpl_vars['sub']['name']; ?>
+
+                     </a>
+                  </li>
+                  <?php endforeach; endif; unset($_from); ?>
+               </ul>
+               <?php endif; ?>
+               <a class="view-all" href="/<?php echo $this->_tpl_vars['cat']['unique_key']; ?>
 ">Xem thêm</a>
+            </div>
          </div>
-
-
          <div class="p-products">
             <?php $_from = $this->_tpl_vars['cat']['products']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['item']):

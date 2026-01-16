@@ -46,7 +46,7 @@
 }
 .p-mv .img {
   width: 100%;
-  height: 17rem;
+  height: 20rem;
   object-fit: cover;
 }
 @media (min-width: 768px) {
@@ -113,6 +113,22 @@
   border-left: 0.4rem solid #b31d29;
   line-height: 1;
   padding-left: 1rem;
+}
+.home-category .cate-sub {
+  display: flex;
+  gap: 2rem;
+}
+.home-category .cate-sub ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.home-category .cate-sub ul li a {
+  text-transform: capitalize;
+}
+.home-category .cate-sub ul li a:hover {
+  color: #b31d29;
 }
 .home-category .view-all {
   background: #eee;

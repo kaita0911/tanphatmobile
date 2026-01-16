@@ -430,6 +430,14 @@ img.alignleft {
     transform: translateY(0);
   }
 }
+@keyframes light-run {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
 .btn {
   display: inline-block;
   font-family: "Roboto", sans-serif;
@@ -454,6 +462,7 @@ img.alignleft {
 
 .p-header .head-mv {
   background: #b31d29;
+  position: relative;
 }
 .p-header .container {
   position: relative;
@@ -1288,6 +1297,7 @@ input[type=month].form-control {
 .ttl01 {
   font-size: 2rem;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .ttl02 {

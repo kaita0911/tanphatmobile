@@ -92,6 +92,29 @@ ORDER BY c.num ASC
 ";
 
 $categories = $GLOBALS['sp']->getAll($sqlCat);
+foreach ($categories as &$cat) {
+
+    $sqlSub = "
+    SELECT 
+        c.id,
+        c.num,
+        d.name,
+        d.unique_key
+    FROM {$GLOBALS['db_sp']}.categories_related cr
+    INNER JOIN {$GLOBALS['db_sp']}.categories c
+        ON c.id = cr.category_id
+       AND c.active = 1
+    INNER JOIN {$GLOBALS['db_sp']}.categories_detail d
+        ON d.categories_id = c.id
+       AND d.languageid = {$langid}
+    WHERE cr.related_id = {$cat['id']}
+    ORDER BY c.num ASC
+    ";
+
+    $cat['sub_categories'] = $GLOBALS['sp']->getAll($sqlSub);
+}
+unset($cat);
+
 ////
 if (!empty($categories)) {
 

@@ -50,10 +50,21 @@
                   {$cat.name}
                </a>
             </h2>
-            <a class="view-all" href="/{$cat.unique_key}">Xem thêm</a>
+            <div class="cate-sub">
+               {if $cat.sub_categories}
+               <ul>
+                  {foreach from=$cat.sub_categories item=sub}
+                  <li>
+                     <a href="/{$sub.unique_key}">
+                        {$sub.name}
+                     </a>
+                  </li>
+                  {/foreach}
+               </ul>
+               {/if}
+               <a class="view-all" href="/{$cat.unique_key}">Xem thêm</a>
+            </div>
          </div>
-
-
          <div class="p-products">
             {foreach from=$cat.products item=item}
             <div class="product-item">
