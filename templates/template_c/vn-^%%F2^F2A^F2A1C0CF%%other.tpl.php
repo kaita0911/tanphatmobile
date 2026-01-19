@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-12 09:41:57
+<?php /* Smarty version 2.6.30, created on 2026-01-19 08:34:57
          compiled from products/other.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'products/other.tpl', 4, false),array('modifier', 'round', 'products/other.tpl', 5, false),)), $this); ?>
@@ -18,7 +18,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'pro
 " title="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
 ">
     <img src="<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
-?width=400&height=400&mode=cover" alt="<?php echo $this->_tpl_vars['item']['name']; ?>
+" alt="<?php echo $this->_tpl_vars['item']['name']; ?>
 " class="img-cover">
   </a>
   <h3><a class="product-item__ttl hover" href="<?php echo $this->_tpl_vars['path_url']; ?>

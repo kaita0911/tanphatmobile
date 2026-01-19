@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-16 15:13:51
+<?php /* Smarty version 2.6.30, created on 2026-01-19 08:34:25
          compiled from main/main.tpl */ ?>
 <main>
    <div class="container">
@@ -45,7 +45,7 @@
 " title="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
 ">
                      <img src="<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
-?width=350&height=350&mode=scale" alt="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
+" alt="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
 " class="img-cover" loading="lazy">
                   </a>
                   <h3><a class="product-item__ttl hover" href="<?php echo $this->_tpl_vars['path_url']; ?>
@@ -112,7 +112,7 @@
 " title="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
 ">
                   <img src="<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
-?width=350&height=350&mode=scale" alt="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
+" alt="<?php echo $this->_tpl_vars['item']['name_detail']; ?>
 " class="img-cover" loading="lazy">
                </a>
                <h3><a class="product-item__ttl hover" href="<?php echo $this->_tpl_vars['itemath_url']; ?>

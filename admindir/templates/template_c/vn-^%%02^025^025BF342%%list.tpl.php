@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-09 15:39:26
+<?php /* Smarty version 2.6.30, created on 2026-01-19 10:10:56
          compiled from articlelist/list.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'articlelist/list.tpl', 21, false),array('modifier', 'count', 'articlelist/list.tpl', 52, false),array('modifier', 'escape', 'articlelist/list.tpl', 150, false),array('modifier', 'date_format', 'articlelist/list.tpl', 169, false),)), $this); ?>
@@ -188,7 +188,7 @@ if ($this->_foreach['loop']['total'] > 0):
                               <span data-lang="<?php echo $this->_tpl_vars['lang']['id']; ?>
 " class="tab c-name editable-name <?php if ($this->_tpl_vars['lang']['id'] == $this->_tpl_vars['currentLang']): ?>active<?php endif; ?>" data-id="<?php echo $this->_tpl_vars['item']['id']; ?>
 ">
-                                 <span class="view-text"><?php echo ((is_array($_tmp=$this->_tpl_vars['detail']['name'])) ? $this->_run_mod_handler('escape', true, $_tmp, 'html', 'UTF-8') : smarty_modifier_escape($_tmp, 'html', 'UTF-8')); ?>
+                                 <span><?php echo ((is_array($_tmp=$this->_tpl_vars['detail']['name'])) ? $this->_run_mod_handler('escape', true, $_tmp, 'html', 'UTF-8') : smarty_modifier_escape($_tmp, 'html', 'UTF-8')); ?>
 </span>
                                  <input type="text" class="edit-input form-control" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['item']['details']['name'])) ? $this->_run_mod_handler('escape', true, $_tmp, 'html', 'UTF-8') : smarty_modifier_escape($_tmp, 'html', 'UTF-8')); ?>
 " style="display:none;">

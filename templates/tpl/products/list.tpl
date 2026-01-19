@@ -6,7 +6,7 @@
     <span class="discount">-{$discount|round:0}%</span>
     {/if}
     <a class="product-item__img hover-img" href="{$path_url}/{$lang_prefix}{$item.unique_key}" title="{$item.name_detail}">
-      <img src="{$item.img_thumb_vn}?width=300&height=300&mode=scale" title="{$item.name_detail}" alt="{$item.name_detail}" class="img-cover" loading="lazy">
+      <img src="{$item.img_thumb_vn}" title="{$item.name_detail}" alt="{$item.name_detail}" class="img-cover" loading="lazy">
     </a>
     <h3><a class="product-item__ttl hover" href="{$path_url}/{$lang_prefix}{$item.unique_key}" title="{$item.name_detail}">{$item.name_detail}</a></h3>
     <div class="product-price">

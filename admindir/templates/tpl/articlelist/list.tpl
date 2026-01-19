@@ -147,7 +147,7 @@
                               {/if}
                               {/foreach}
                               <span data-lang="{$lang.id}" class="tab c-name editable-name {if $lang.id==$currentLang}active{/if}" data-id="{$item.id}">
-                                 <span class="view-text">{$detail.name|escape:'html':'UTF-8'}</span>
+                                 <span>{$detail.name|escape:'html':'UTF-8'}</span>
                                  <input type="text" class="edit-input form-control" value="{$item.details.name|escape:'html':'UTF-8'}" style="display:none;">
                               </span>
                               {/foreach}

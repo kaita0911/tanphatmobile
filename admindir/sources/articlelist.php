@@ -353,7 +353,7 @@ switch ($act) {
                 $ext     = $info['extension'];
                 $name    = $info['filename'];
 
-                $newFile = $name . '_copy_' . time() . '.' . $ext;
+                $newFile = $name . '_' . time() . '.' . $ext;
                 $newPath = $dir . '/' . $newFile;
 
                 if (@copy($oldPath, $newPath)) {
@@ -444,7 +444,21 @@ switch ($act) {
                     ]);
                 }
             }
+            // ============================
+            // 7️⃣ COPY DANH MỤC
+            // ============================
+            $cats = $sp->getAll("
+                SELECT *
+                FROM {$GLOBALS['db_sp']}.articlelist_categories
+                WHERE articlelist_id = {$id}
+                ");
 
+            foreach ($cats as $cat) {
+                vaInsert('articlelist_categories', [
+                    'articlelist_id' => $id_new,
+                    'categories_id'  => $cat['categories_id']
+                ]);
+            }
             // ============================
             // 6️⃣ COPY GALLERY THEO MÀU
             // ============================
