@@ -9,7 +9,7 @@
     {if $tinhnang.hinhdanhmuc == 1}
     <td align="center" class="img-table">
         {if $category.img_vn}
-        <div class="c-img">
+        <div class="c-imgs">
             <img src="/{$category.img_vn}?width=60&height=60&mode=scale" alt="img">
         </div>
         {/if}

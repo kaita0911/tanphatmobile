@@ -118,13 +118,16 @@
 
                         <td align="center">
                            {if $item.img_thumb_vn neq ""}
-                           <div class="c-img {$item.comp}">
-                              {if $tinhnang.id == 19}
-                              <img src="/{$item.img_thumb_vn}" />
-
-                              {else}
-                              <img src="/{$item.img_thumb_vn}?width=60&height=60&mode=contain" />
-                              {/if}
+                           <div class="c-img {$item.comp}" data-comp="{$item.comp}" title="Làm mới">
+                              <label class="img-change">
+                                 <img src="/{$item.img_thumb_vn}?width=80&height=80&mode=contain"
+                                    class="preview-img" />
+                                 <span class="img-overlay">
+                                    <i class="fa fa-camera"></i>
+                                    <small>Đổi ảnh</small>
+                                 </span>
+                                 <input type="file" class="img-input" hidden accept="image/*">
+                              </label>
                            </div>
                            {/if}
                         </td>

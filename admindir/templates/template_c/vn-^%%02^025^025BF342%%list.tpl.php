@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.30, created on 2026-01-19 10:10:56
+<?php /* Smarty version 2.6.30, created on 2026-01-20 09:35:31
          compiled from articlelist/list.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'articlelist/list.tpl', 21, false),array('modifier', 'count', 'articlelist/list.tpl', 52, false),array('modifier', 'escape', 'articlelist/list.tpl', 150, false),array('modifier', 'date_format', 'articlelist/list.tpl', 169, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'articlelist/list.tpl', 21, false),array('modifier', 'count', 'articlelist/list.tpl', 52, false),array('modifier', 'escape', 'articlelist/list.tpl', 153, false),array('modifier', 'date_format', 'articlelist/list.tpl', 172, false),)), $this); ?>
 <div class="contentmain">
    <div class="main">
       <div class="left_sidebar padding10">
@@ -150,15 +150,18 @@ if ($this->_foreach['loop']['total'] > 0):
                         <td align="center">
                            <?php if ($this->_tpl_vars['item']['img_thumb_vn'] != ""): ?>
                            <div class="c-img <?php echo $this->_tpl_vars['item']['comp']; ?>
-">
-                              <?php if ($this->_tpl_vars['tinhnang']['id'] == 19): ?>
-                              <img src="/<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
-" />
-
-                              <?php else: ?>
-                              <img src="/<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
-?width=60&height=60&mode=contain" />
-                              <?php endif; ?>
+" data-comp="<?php echo $this->_tpl_vars['item']['comp']; ?>
+" title="Làm mới">
+                              <label class="img-change">
+                                 <img src="/<?php echo $this->_tpl_vars['item']['img_thumb_vn']; ?>
+?width=80&height=80&mode=contain"
+                                    class="preview-img" />
+                                 <span class="img-overlay">
+                                    <i class="fa fa-camera"></i>
+                                    <small>Đổi ảnh</small>
+                                 </span>
+                                 <input type="file" class="img-input" hidden accept="image/*">
+                              </label>
                            </div>
                            <?php endif; ?>
                         </td>

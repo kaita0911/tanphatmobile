@@ -583,6 +583,14 @@ switch ($act) {
     case 'addsm':
     case 'editsm':
         saveArticle();
+        // 👉 Nếu là AJAX upload ảnh
+        if (!empty($_FILES['img_thumb_vn'])) {
+            ob_clean();
+            echo json_encode([
+                'success' => true
+            ]);
+            exit;
+        }
         page_transfer2("index.php?do=articlelist&comp={$comp}");
         break;
 
@@ -691,8 +699,8 @@ function saveArticle()
         // 🔹 Xóa ảnh cũ nếu có (chỉ khi đang ở chế độ edit)
         if ($act === 'editsm' && !empty($id)) {
             $oldImg = $GLOBALS['sp']->getOne("SELECT img_thumb_vn FROM {$GLOBALS['db_sp']}.articlelist WHERE id = " . intval($id));
-            if (!empty($oldImg) && file_exists($oldImg)) {
-                @unlink($oldImg);
+            if (!empty($oldImg) && file_exists('../' . $oldImg)) {
+                @unlink('../' . $oldImg);
             }
         }
 

@@ -875,73 +875,23 @@ function copyRowPassword(btn, text) {
 }
 //////
 var wrapper = document.getElementById("product-code-wrapper");
-var productIndex = 0;
-var items = wrapper.querySelectorAll(".product-code");
-items.forEach(function (item) {
-  var idx = parseInt(item.dataset.index || 0);
-  if (idx > productIndex) productIndex = idx;
-});
-function syncVariantColor(variantItem, hex) {
-  if (!variantItem) return;
+if (wrapper) {
+  var productIndex = 0;
+  var items = wrapper.querySelectorAll(".product-code");
+  items.forEach(function (item) {
+    var idx = parseInt(item.dataset.index || 0);
+    if (idx > productIndex) productIndex = idx;
+  });
+  // event delegation
+  wrapper.addEventListener("click", function (e) {
+    // ➕ thêm màu
+    if (e.target.classList.contains("add-variant")) {
+      var productDiv = e.target.closest(".product-code");
+      var variantWrapper = productDiv.querySelector(".variant-wrapper");
+      var pIndex = productDiv.dataset.index;
+      var vIndex = variantWrapper.children.length;
 
-  if (!hex) return;
-
-  if (!hex.startsWith("#")) hex = "#" + hex;
-
-  // chỉ validate đúng HEX
-  if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return;
-
-  hex = hex.toLowerCase();
-  const key = hex.slice(1);
-
-  variantItem.dataset.color = key;
-
-  const picker = variantItem.querySelector(".color-picker");
-  const text = variantItem.querySelector(".color-code-text");
-  const label = variantItem.querySelector(".color-label");
-  const file = variantItem.querySelector('input[type="file"]');
-
-  if (picker && picker.value !== hex) picker.value = hex;
-  if (text && text.value !== hex) text.value = hex;
-  if (label) label.textContent = hex;
-  if (file) file.name = `images[${key}][]`;
-}
-
-document.getElementById("add-product-code").onclick = function () {
-  productIndex++;
-
-  var html = `
-    <div class="product-code" data-index="${productIndex}" style="border:1px solid #ccc;padding:10px;margin-top:10px">
-     <div class="product-handle" draggable="true">⇅</div>
-    <!-- sort order -->
-    <input type="hidden"
-           class="code-sort"
-           name="products[${productIndex}][sort_order]"
-           value="${items.length}" />  
-      <div class="product-code-top">
-        <label>Mã sản phẩm:</label>
-        <input type="text" name="products[${productIndex}][code]" placeholder="VD: IP14-128" />
-        </div>
-        <button type="button" class="add-variant">➕ Thêm màu</button>
-      
-
-      <div class="variant-wrapper"></div>
-    </div>
-  `;
-
-  wrapper.insertAdjacentHTML("afterbegin", html);
-};
-
-// event delegation
-wrapper.addEventListener("click", function (e) {
-  // ➕ thêm màu
-  if (e.target.classList.contains("add-variant")) {
-    var productDiv = e.target.closest(".product-code");
-    var variantWrapper = productDiv.querySelector(".variant-wrapper");
-    var pIndex = productDiv.dataset.index;
-    var vIndex = variantWrapper.children.length;
-
-    var variantHTML = `
+      var variantHTML = `
       <div class="variant-item">
       <div class="variant-handle" draggable="true">⇅</div>
        <!-- sort order -->
@@ -981,193 +931,220 @@ wrapper.addEventListener("click", function (e) {
             </div>
     `;
 
-    variantWrapper.insertAdjacentHTML("afterbegin", variantHTML);
-  }
-  // ❌ xoá toàn bộ variant-item
-  if (e.target.classList.contains("remove-variant")) {
-    var variantItem = e.target.closest(".variant-item");
-    if (variantItem) {
-      var wrapper = variantItem.closest(".variant-wrapper");
-
-      variantItem.remove();
-
-      // cập nhật lại sort_order
-      // updateVariantSort(wrapper);
+      variantWrapper.insertAdjacentHTML("afterbegin", variantHTML);
     }
-  }
-  // ❌ xoá MÃ sản phẩm
-  if (e.target.classList.contains("remove-product")) {
-    var productCode = e.target.closest(".product-code");
-    if (!productCode) return;
+    // ❌ xoá toàn bộ variant-item
+    if (e.target.classList.contains("remove-variant")) {
+      var variantItem = e.target.closest(".variant-item");
+      if (variantItem) {
+        var wrapper = variantItem.closest(".variant-wrapper");
 
-    if (!confirm("Xoá mã sản phẩm này và toàn bộ màu + giá?")) return;
+        variantItem.remove();
 
-    productCode.remove();
-  }
-});
-// 🎨 ĐỒNG BỘ MÀU ↔ MÃ HEX
-wrapper.addEventListener("input", function (e) {
-  // đổi color → cập nhật text
-  if (e.target.classList.contains("color-picker")) {
-    var parent = e.target.closest(".variant-item");
-    parent.querySelector(".color-code-text").value = e.target.value;
-  }
-
-  // nhập mã → đổi color
-  if (e.target.classList.contains("color-code-text")) {
-    var parent = e.target.closest(".variant-item");
-    var colorInput = parent.querySelector(".color-picker");
-    var val = e.target.value;
-
-    if (/^#([0-9A-F]{3}){1,2}$/i.test(val)) {
-      colorInput.value = val;
+        // cập nhật lại sort_order
+        // updateVariantSort(wrapper);
+      }
     }
-  }
-  if (e.target.classList.contains("price-input")) {
-    var value = e.target.value.replace(/\D/g, ""); // chỉ lấy số
+    // ❌ xoá MÃ sản phẩm
+    if (e.target.classList.contains("remove-product")) {
+      var productCode = e.target.closest(".product-code");
+      if (!productCode) return;
 
-    if (value === "") {
-      e.target.value = "";
+      if (!confirm("Xoá mã sản phẩm này và toàn bộ màu + giá?")) return;
+
+      productCode.remove();
+    }
+  });
+  // 🎨 ĐỒNG BỘ MÀU ↔ MÃ HEX
+  wrapper.addEventListener("input", function (e) {
+    // đổi color → cập nhật text
+    if (e.target.classList.contains("color-picker")) {
+      var parent = e.target.closest(".variant-item");
+      parent.querySelector(".color-code-text").value = e.target.value;
+    }
+
+    // nhập mã → đổi color
+    if (e.target.classList.contains("color-code-text")) {
+      var parent = e.target.closest(".variant-item");
+      var colorInput = parent.querySelector(".color-picker");
+      var val = e.target.value;
+
+      if (/^#([0-9A-F]{3}){1,2}$/i.test(val)) {
+        colorInput.value = val;
+      }
+    }
+    if (e.target.classList.contains("price-input")) {
+      var value = e.target.value.replace(/\D/g, ""); // chỉ lấy số
+
+      if (value === "") {
+        e.target.value = "";
+        return;
+      }
+
+      e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    // ///đổi màu thì đổi mã màu của ảnh theo
+    // if (!e.target.classList.contains("color-picker")) return;
+
+    // var variantItem = e.target.closest(".variant-item");
+    // var hex = e.target.value;
+    // var key = hex.replace("#", "");
+
+    // // lưu màu
+    // variantItem.dataset.color = key;
+
+    // // update text
+    // variantItem.querySelector(".color-code-text").value = hex;
+    // variantItem.querySelector(".color-label").textContent = hex;
+
+    // // update name input file
+    // variantItem.querySelector("input[type=file]").name = `images[${key}][]`;
+    if (!e.target.classList.contains("color-code-text")) return;
+    syncVariantColor(e.target.closest(".variant-item"), e.target.value);
+  });
+  wrapper.addEventListener("input", function (e) {
+    if (!e.target.classList.contains("color-picker")) return;
+
+    const variantItem = e.target.closest(".variant-item");
+    syncVariantColor(variantItem, e.target.value);
+  });
+  // 📋 copy / paste từ bên ngoài
+  wrapper.addEventListener("paste", function (e) {
+    if (!e.target.classList.contains("color-code-text")) return;
+
+    setTimeout(() => {
+      syncVariantColor(e.target.closest(".variant-item"), e.target.value);
+    }, 0);
+  });
+  ////đổi vị trí mã sản phẩm
+  let draggedCode = null;
+  let draggedVariant = null;
+
+  /* =========================
+   DRAG START
+========================= */
+  wrapper.addEventListener("dragstart", function (e) {
+    const codeHandle = e.target.closest(".product-handle");
+    const variantHandle = e.target.closest(".variant-handle");
+
+    if (codeHandle) {
+      draggedCode = codeHandle.closest(".product-code");
+      draggedCode.classList.add("dragging");
       return;
     }
 
-    e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
-  // ///đổi màu thì đổi mã màu của ảnh theo
-  // if (!e.target.classList.contains("color-picker")) return;
+    if (variantHandle) {
+      e.stopPropagation();
+      draggedVariant = variantHandle.closest(".variant-item");
+      draggedVariant.classList.add("dragging-variant");
+      return;
+    }
 
-  // var variantItem = e.target.closest(".variant-item");
-  // var hex = e.target.value;
-  // var key = hex.replace("#", "");
+    e.preventDefault();
+  });
 
-  // // lưu màu
-  // variantItem.dataset.color = key;
-
-  // // update text
-  // variantItem.querySelector(".color-code-text").value = hex;
-  // variantItem.querySelector(".color-label").textContent = hex;
-
-  // // update name input file
-  // variantItem.querySelector("input[type=file]").name = `images[${key}][]`;
-  if (!e.target.classList.contains("color-code-text")) return;
-  syncVariantColor(e.target.closest(".variant-item"), e.target.value);
-});
-wrapper.addEventListener("input", function (e) {
-  if (!e.target.classList.contains("color-picker")) return;
-
-  const variantItem = e.target.closest(".variant-item");
-  syncVariantColor(variantItem, e.target.value);
-});
-// 📋 copy / paste từ bên ngoài
-wrapper.addEventListener("paste", function (e) {
-  if (!e.target.classList.contains("color-code-text")) return;
-
-  setTimeout(() => {
-    syncVariantColor(e.target.closest(".variant-item"), e.target.value);
-  }, 0);
-});
-// 🔍 click ra ngoài (blur) – tránh trường hợp browser delay
-
-// wrapper.addEventListener("change", function (e) {
-//   if (e.target.type !== "file") return;
-
-//   var input = e.target;
-//   var preview = input
-//     .closest(".color-upload-box")
-//     .querySelector(".image-preview");
-
-//   preview.innerHTML = ""; // clear cũ
-
-//   Array.from(input.files).forEach((file) => {
-//     if (!file.type.startsWith("image/")) return;
-
-//     var reader = new FileReader();
-
-//     reader.onload = function (ev) {
-//       var img = document.createElement("img");
-//       img.src = ev.target.result;
-//       preview.appendChild(img);
-//     };
-
-//     reader.readAsDataURL(file);
-//   });
-// });
-
-////đổi vị trí mã sản phẩm
-let draggedCode = null;
-let draggedVariant = null;
-
-/* =========================
-   DRAG START
-========================= */
-wrapper.addEventListener("dragstart", function (e) {
-  const codeHandle = e.target.closest(".product-handle");
-  const variantHandle = e.target.closest(".variant-handle");
-
-  if (codeHandle) {
-    draggedCode = codeHandle.closest(".product-code");
-    draggedCode.classList.add("dragging");
-    return;
-  }
-
-  if (variantHandle) {
-    e.stopPropagation();
-    draggedVariant = variantHandle.closest(".variant-item");
-    draggedVariant.classList.add("dragging-variant");
-    return;
-  }
-
-  e.preventDefault();
-});
-
-/* =========================
+  /* =========================
    DRAG OVER
 ========================= */
-wrapper.addEventListener("dragover", function (e) {
-  e.preventDefault();
+  wrapper.addEventListener("dragover", function (e) {
+    e.preventDefault();
 
-  /* ---- DRAG PRODUCT CODE ---- */
-  if (draggedCode) {
-    const target = e.target.closest(".product-code");
-    if (!target || target === draggedCode) return;
+    /* ---- DRAG PRODUCT CODE ---- */
+    if (draggedCode) {
+      const target = e.target.closest(".product-code");
+      if (!target || target === draggedCode) return;
 
-    const rect = target.getBoundingClientRect();
-    const after = e.clientY > rect.top + rect.height / 2;
-    wrapper.insertBefore(draggedCode, after ? target.nextSibling : target);
-    return;
-  }
+      const rect = target.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      wrapper.insertBefore(draggedCode, after ? target.nextSibling : target);
+      return;
+    }
 
-  /* ---- DRAG VARIANT ---- */
-  if (draggedVariant) {
-    const target = e.target.closest(".variant-item");
-    if (!target || target === draggedVariant) return;
+    /* ---- DRAG VARIANT ---- */
+    if (draggedVariant) {
+      const target = e.target.closest(".variant-item");
+      if (!target || target === draggedVariant) return;
 
-    const w1 = draggedVariant.closest(".variant-wrapper");
-    const w2 = target.closest(".variant-wrapper");
-    if (w1 !== w2) return;
+      const w1 = draggedVariant.closest(".variant-wrapper");
+      const w2 = target.closest(".variant-wrapper");
+      if (w1 !== w2) return;
 
-    const rect = target.getBoundingClientRect();
-    const after = e.clientY > rect.top + rect.height / 2;
-    w1.insertBefore(draggedVariant, after ? target.nextSibling : target);
-  }
-});
+      const rect = target.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      w1.insertBefore(draggedVariant, after ? target.nextSibling : target);
+    }
+  });
 
-/* =========================
+  /* =========================
    DRAG END (CHỈ 1 CÁI)
 ========================= */
-wrapper.addEventListener("dragend", function () {
-  if (draggedCode) {
-    draggedCode.classList.remove("dragging");
-    updateCodeSort();
-    draggedCode = null;
-  }
+  wrapper.addEventListener("dragend", function () {
+    if (draggedCode) {
+      draggedCode.classList.remove("dragging");
+      updateCodeSort();
+      draggedCode = null;
+    }
 
-  if (draggedVariant) {
-    draggedVariant.classList.remove("dragging-variant");
-    updateVariantSort(draggedVariant.closest(".variant-wrapper"));
-    draggedVariant = null;
-  }
-});
+    if (draggedVariant) {
+      draggedVariant.classList.remove("dragging-variant");
+      updateVariantSort(draggedVariant.closest(".variant-wrapper"));
+      draggedVariant = null;
+    }
+  });
+}
+
+function syncVariantColor(variantItem, hex) {
+  if (!variantItem) return;
+
+  if (!hex) return;
+
+  if (!hex.startsWith("#")) hex = "#" + hex;
+
+  // chỉ validate đúng HEX
+  if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return;
+
+  hex = hex.toLowerCase();
+  const key = hex.slice(1);
+
+  variantItem.dataset.color = key;
+
+  const picker = variantItem.querySelector(".color-picker");
+  const text = variantItem.querySelector(".color-code-text");
+  const label = variantItem.querySelector(".color-label");
+  const file = variantItem.querySelector('input[type="file"]');
+
+  if (picker && picker.value !== hex) picker.value = hex;
+  if (text && text.value !== hex) text.value = hex;
+  if (label) label.textContent = hex;
+  if (file) file.name = `images[${key}][]`;
+}
+var addcode = document.getElementById("add-product-code");
+if (addcode) {
+  addcode.onclick = function () {
+    productIndex++;
+
+    var html = `
+      <div class="product-code" data-index="${productIndex}" style="border:1px solid #ccc;padding:10px;margin-top:10px">
+       <div class="product-handle" draggable="true">⇅</div>
+      <!-- sort order -->
+      <input type="hidden"
+             class="code-sort"
+             name="products[${productIndex}][sort_order]"
+             value="${items.length}" />  
+        <div class="product-code-top">
+          <label>Mã sản phẩm:</label>
+          <input type="text" name="products[${productIndex}][code]" placeholder="VD: IP14-128" />
+          </div>
+          <button type="button" class="add-variant">➕ Thêm màu</button>
+        
+  
+        <div class="variant-wrapper"></div>
+      </div>
+    `;
+
+    wrapper.insertAdjacentHTML("afterbegin", html);
+  };
+}
 
 /* =========================
    SORT UPDATE
@@ -1224,4 +1201,37 @@ $(document).ready(function () {
       }
     );
   });
+});
+////update image truc tiep
+
+document.addEventListener("change", function (e) {
+  if (!e.target.classList.contains("img-input")) return;
+
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const tr = e.target.closest("tr");
+  const id = tr.dataset.id;
+  const imgWrap = tr.querySelector(".c-img");
+  const comp = imgWrap.dataset.comp; // CHUẨN
+  const img = tr.querySelector("img");
+
+  // preview
+  const reader = new FileReader();
+  reader.onload = (ev) => (img.src = ev.target.result);
+  reader.readAsDataURL(file);
+
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("comp", comp);
+  formData.append("img_thumb_vn", file);
+
+  fetch("/admindir/functions/update_image.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((r) => r.json())
+    .then((r) => {
+      if (!r.success) alert(r.message);
+    });
 });

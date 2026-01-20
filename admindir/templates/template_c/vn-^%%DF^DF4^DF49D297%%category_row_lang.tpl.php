@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2025-11-23 11:17:57
+<?php /* Smarty version 2.6.30, created on 2026-01-20 09:43:18
          compiled from categories/category_row_lang.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'categories/category_row_lang.tpl', 32, false),array('modifier', 'escape', 'categories/category_row_lang.tpl', 32, false),array('modifier', 'count', 'categories/category_row_lang.tpl', 83, false),)), $this); ?>
@@ -16,7 +16,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', '
     <?php if ($this->_tpl_vars['tinhnang']['hinhdanhmuc'] == 1): ?>
     <td align="center" class="img-table">
         <?php if ($this->_tpl_vars['category']['img_vn']): ?>
-        <div class="c-img">
+        <div class="c-imgs">
             <img src="/<?php echo $this->_tpl_vars['category']['img_vn']; ?>
 ?width=60&height=60&mode=scale" alt="img">
         </div>
